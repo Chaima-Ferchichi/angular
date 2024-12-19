@@ -1,7 +1,7 @@
 <input type="checkbox" id="menu-toggle" />
 <div class="sidebar">
   <div class="side-header">
-    <h3>A<span>dmin</span></h3>
+    <h3>P<span>rop</span></h3>
   </div>
 
   <div class="side-content">
@@ -12,7 +12,7 @@
           background-image: url(https://cdn-icons-png.flaticon.com/512/219/219986.png);
         "
       ></div>
-      <h5 style="color: white">Administrateur</h5>
+      <h5 style="color: white">Propreitaire</h5>
     </div>
 
     <div class="side-menu">
@@ -25,9 +25,21 @@
                 </li>-->
 
         <li>
-          <a routerLink="/listeDemandes">
+          <a routerLink="/prop">
             <span class="las la-tasks"></span>
-            <small>Liste des demandes</small>
+            <small>Demande d'adhésion </small>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/listeChambres">
+            <span class="las la-tasks"></span>
+            <small>Chambre</small>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/reservation-liste">
+            <span class="las la-tasks"></span>
+            <small>liste reservation</small>
           </a>
         </li>
         <!--<li>
@@ -68,7 +80,7 @@
   <main>
     <div class="page-header">
       <h1>Dashboard</h1>
-      <small>La liste des demandes d'hadision des propreitaire</small>
+      <small>La liste des chambres </small>
     </div>
 
     <div class="page-content">
@@ -79,48 +91,39 @@
             <span class="las la-user-friends"></span>
           </div>
           <div class="card-progress">
-            <small>Nombre des demandes </small>
+            <small>Nombre des chambres</small>
             <div class="card-indicator">
               <div class="indicator one" style="width: 60%"></div>
             </div>
           </div>
         </div>
       </div>
-
+      <div class="records table-responsive">
+        <div class="record-header">
+          <div class="add">
+            <span>Ajouter chambre </span>
+            <button routerLink="/ajoutChambre">
+              <span class="las la-user-friends"></span>
+            </button>
+          </div>
+        </div>
+      </div>
       <div class="records table-responsive">
         <div>
           <table width="100%">
             <thead>
               <tr>
-                <th>Hebergement</th>
-                <th><span class="las la-sort"></span> Localisation</th>
-                <th><span class="las la-sort"></span> Telephone</th>
-                <th><span class="las la-sort"></span> Fax</th>
-                <th><span class="las la-sort"></span> Equipements</th>
-                <th><span class="las la-sort"></span> Email</th>
+                <th><span class="las la-sort"></span>Type de Longement</th>
+                <th><span class="las la-sort"></span> Equipement</th>
+                <th><span class="las la-sort"></span> Nombre de voyageurs</th>
+                <th><span class="las la-sort"></span> Prix</th>
                 <th><span class="las la-sort"></span> ACTIONS</th>
               </tr>
             </thead>
             <tbody>
-              <ng-container *ngFor="let item of demandes">
+              <ng-container *ngFor="let item of chambres">
                 <tr>
-                  <td>{{ item.nom }}</td>
-                  <td>
-                    <div class="client">
-                      <div
-                        class="client-img bg-img"
-                        style="
-                          background-image: url(https://cdn0.iconfinder.com/data/icons/hotel-icons-rounded/110/Hotel-2-512.png);
-                        "
-                      ></div>
-                      <div class="client-info">
-                        <h4>{{ item.type }} a {{ item.localisation }}</h4>
-                        <small>{{ item.etoile }} ⭐ </small>
-                      </div>
-                    </div>
-                  </td>
-                  <td>{{ item.telephone }}</td>
-                  <td>{{ item.fax }}</td>
+                  <td>{{ item.bed }}</td>
                   <td
                     style="
                       display: flex;
@@ -129,17 +132,17 @@
                       align-items: flex-start; /* Alignement à gauche */
                     "
                   >
-                    <span *ngIf="item.entertaiment" class="badge bg-success"
-                      >💆 Spa</span
+                    <span *ngIf="item.climatisation" class="badge bg-success"
+                      >❄️ Climatisation</span
                     >
-                    <span *ngIf="item.piscine" class="badge bg-info"
-                      >🏊 Piscine</span
+                    <span *ngIf="item.balcon" class="badge bg-info"
+                      >🌅 Balcon</span
                     >
-                    <span *ngIf="item.parking" class="badge bg-warning"
-                      >🅿️ Parking</span
+                    <span *ngIf="item.televesion" class="badge bg-warning"
+                      >📺 Télévision à écran plat</span
                     >
-                    <span *ngIf="item.serviceChambre" class="badge bg-primary"
-                      >🍽️ Service Chambre</span
+                    <span *ngIf="item.salledebains" class="badge bg-primary"
+                      >🛁 Salle de bains privative</span
                     >
                     <span
                       *ngIf="item.wifi"
@@ -147,26 +150,30 @@
                       style="color: black"
                       >🌐 Wi-Fi</span
                     >
-                    <span *ngIf="item.restauration" class="badge bg-dark"
-                      >🍴 Restaurant</span
-                    >
+                    <span class="badge bg-light" style="color: black">
+                      🏠 Espace : {{ item.espace }}
+                    </span>
                   </td>
-                  <td>{{ item.email }}</td>
+                  <td>
+                    {{ item.nbPersonne }}
+                    <span class="las la-user-friends"></span>
+                  </td>
+                  <td>{{ item.prix }}</td>
                   <td>
                     <button
-                      (click)="Accepter(item.id)"
+                      style="margin-right: 5%"
                       type="button"
                       class="btn btn-success"
-                      style="margin-right: 5%"
+                      [routerLink]="['/editChambre', item.id]"
                     >
-                      Accepter
+                      <i class="bi bi-pencil-square"></i>
                     </button>
                     <button
                       (click)="delete(item.id)"
                       type="button"
-                      class="btn btn-danger"
+                      class="btn btn-outline-danger"
                     >
-                      Refuser
+                      <i class="bi bi-trash3"></i>
                     </button>
                   </td>
                 </tr>

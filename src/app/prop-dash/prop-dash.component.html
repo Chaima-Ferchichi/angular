@@ -1,0 +1,429 @@
+<input type="checkbox" id="menu-toggle" />
+<div class="sidebar">
+  <div class="side-header">
+    <h3>P<span>rop</span></h3>
+  </div>
+
+  <div class="side-content">
+    <div class="profile">
+      <div
+        class="profile-img bg-img"
+        style="
+          background-image: url(https://cdn-icons-png.flaticon.com/512/219/219986.png);
+        "
+      ></div>
+      <h5 style="color: white">Propreitaire</h5>
+    </div>
+
+    <div class="side-menu">
+      <ul>
+        <!--<li>
+                   <a href="" >
+                        <span class="las la-home"></span>
+                        <small>Dashboard</small>
+                    </a>
+                </li>-->
+
+        <li>
+          <a routerLink="/prop">
+            <span class="las la-tasks"></span>
+            <small>Demande d'adhésion </small>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/listeChambres">
+            <span class="las la-tasks"></span>
+            <small>Chambre</small>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/reservation-liste">
+            <span class="las la-tasks"></span>
+            <small>liste reservation</small>
+          </a>
+        </li>
+        <!--<li>
+                <a href="">
+                     <span class="las la-shopping-cart"></span>
+                     <small>Orders</small>
+                 </a>
+             </li>-->
+        <!--<li>
+          <a routerLink="/admin/Contrats">
+            <span class="las la-clipboard-list"></span>
+            <small>Contrats</small>
+          </a>
+        </li>
+          -->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <header>
+    <div class="header-content">
+      <label for="menu-toggle">
+        <span class="las la-bars"></span>
+      </label>
+
+      <div class="header-menu">
+        <div class="user">
+          <div
+            routerLink=""
+            class="bg-img"
+            style="background-image: url()"
+          ></div>
+
+          <span class="las la-power-off"></span>
+          <span>Logout</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>Dashboard</h1>
+      <small>Demande d'adhésion.</small>
+    </div>
+
+    <div class="container">
+      <h1 class="form-title">Ajouter Demande</h1>
+
+      <form
+        class="row g-3 custom-padding"
+        novalidate
+        (ngSubmit)="ajouter(registreForm)"
+        #registreForm="ngForm"
+      >
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Nom</label>
+          <input
+            id="nom"
+            class="form-control"
+            type="text"
+            name="nom"
+            placeholder="nom"
+            [(ngModel)]="demande.nom"
+            required
+            pattern="[A-Za-zÀ-ÿ\s]*"
+            #nomVar="ngModel"
+            [ngClass]="{ 'is-invalid': nomVar.touched && !nomVar.valid }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="nomVar.errors && nomVar.errors['required']"
+              >Nom est obligatoire</span
+            >
+            <span *ngIf="nomVar.errors && nomVar.errors['pattern']"
+              >Nom ne peut contenir que des lettres alphabétiques</span
+            >
+          </div>
+          <!-- Message d'erreur -->
+        </div>
+
+        <div class="col-md-6" style="padding-left: 5%">
+          <label for="inputCin" class="form-label">Localisation</label>
+          <input
+            id="localisation"
+            class="form-control"
+            type="text"
+            placeholder="localisation"
+            name="localisation"
+            [(ngModel)]="demande.localisation"
+            required
+            pattern="[A-Za-zÀ-ÿ\s]*"
+            #localisationVar="ngModel"
+            [ngClass]="{
+              'is-invalid': localisationVar.touched && !localisationVar.valid
+            }"
+          />
+
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span
+              *ngIf="
+                localisationVar.errors && localisationVar.errors['required']
+              "
+              >localisation est obligatoire</span
+            >
+            <span
+              *ngIf="
+                localisationVar.errors && localisationVar.errors['pattern']
+              "
+              >localisation ne peut contenir que des lettres alphabétiques</span
+            >
+          </div>
+          <!-- Message d'erreur -->
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Fax</label>
+          <input
+            id="fax"
+            class="form-control"
+            type="text"
+            name="fax"
+            placeholder="fax"
+            [(ngModel)]="demande.fax"
+            required
+            #faxVar="ngModel"
+            [ngClass]="{ 'is-invalid': faxVar.touched && !faxVar.valid }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="faxVar.errors && faxVar.errors['required']"
+              >Fax est obligatoire</span
+            >
+          </div>
+          <!-- Message d'erreur -->
+        </div>
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Tel</label>
+          <input
+            id="telephone"
+            class="form-control"
+            type="text"
+            name="telephone"
+            placeholder="telephone"
+            [(ngModel)]="demande.telephone"
+            required
+            #telephoneVar="ngModel"
+            [ngClass]="{
+              'is-invalid': telephoneVar.touched && !telephoneVar.valid
+            }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="telephoneVar.errors && telephoneVar.errors['required']"
+              >telephone est obligatoire</span
+            >
+          </div>
+          <!-- Message d'erreur -->
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Etoile</label>
+          <input
+            id="etoile"
+            class="form-control"
+            type="text"
+            name="etoile"
+            placeholder="etoile"
+            [(ngModel)]="demande.etoile"
+            required
+            #etoileVar="ngModel"
+            [ngClass]="{
+              'is-invalid': etoileVar.touched && !etoileVar.valid
+            }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="etoileVar.errors && etoileVar.errors['required']"
+              >etoile est obligatoire</span
+            >
+          </div>
+          <!-- Message d'erreur -->
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Type</label>
+          <input
+            id="type"
+            class="form-control"
+            type="text"
+            name="type"
+            placeholder="type hebergement"
+            [(ngModel)]="demande.type"
+            required
+            pattern="[A-Za-zÀ-ÿ\s]*"
+            #typeVar="ngModel"
+            [ngClass]="{
+              'is-invalid': typeVar.touched && !typeVar.valid
+            }"
+          />
+        </div>
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            [(ngModel)]="demande.email"
+            required
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            #emailVar="ngModel"
+            [ngClass]="{ 'is-invalid': emailVar.touched && !emailVar.valid }"
+            placeholder="email@gmail.com"
+            class="form-control"
+          />
+
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="emailVar.errors && emailVar.errors['required']"
+              >Email est obligatoire</span
+            >
+            <span *ngIf="emailVar.errors && emailVar.errors['pattern']"
+              >Email non valide</span
+            >
+          </div>
+          <!-- Message d'erreur -->
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Description</label>
+          <input
+            id="description"
+            class="form-control"
+            type="textarea"
+            name="description"
+            placeholder="description"
+            [(ngModel)]="demande.description"
+            required
+            pattern="[A-Za-zÀ-ÿ\s]*"
+            #descriptionVar="ngModel"
+            [ngClass]="{
+              'is-invalid': descriptionVar.touched && !descriptionVar.valid
+            }"
+          />
+
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span
+              *ngIf="descriptionVar.errors && descriptionVar.errors['required']"
+              >description est obligatoire</span
+            >
+          </div>
+          <!-- Message d'erreur -->
+        </div>
+
+        <!-- Section pour les Équipements :avec cases à cocher -->
+        <div class="col-md-6">
+          <label class="form-label">Équipements :</label>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="entertaiment"
+              name="entertaiment"
+              [(ngModel)]="demande.entertaiment"
+            />
+            <label class="form-check-label" for="entertaiment"
+              >💆‍♀️ Spa et centre de bien-être</label
+            >
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="pescine"
+              name="pescine"
+              [(ngModel)]="demande.pescine"
+            />
+            <label class="form-check-label" for="pescine"
+              >🏊 Piscine intérieure</label
+            >
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="parking"
+              name="parking"
+              [(ngModel)]="demande.parking"
+            />
+            <label class="form-check-label" for="parking">
+              🅿️ Parking disponible
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="serviceChambre"
+              name="serviceChambre"
+              [(ngModel)]="demande.serviceChambre"
+            />
+            <label class="form-check-label" for="serviceChambre">
+              🍽️ Service en chambre 24h/24
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="wifi"
+              name="wifi"
+              [(ngModel)]="demande.wifi"
+            />
+            <label class="form-check-label" for="wifi">
+              🌐 Wi-Fi gratuit
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="restauration"
+              name="restauration"
+              [(ngModel)]="demande.restauration"
+            />
+            <label class="form-check-label" for="restauration"
+              >🍴 Restaurant gastronomique</label
+            >
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="images" class="form-label">Images</label>
+          <input
+            id="images"
+            class="form-control"
+            type="file"
+            (change)="onFileChange($event)"
+            multiple
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Prix par nuit :</label>
+          <input
+            id="prix"
+            class="form-control"
+            type="number"
+            name="Prix"
+            placeholder="prix en euro"
+            [(ngModel)]="demande.prix"
+            required
+            #prixVar="ngModel"
+            [ngClass]="{
+              'is-invalid': prixVar.touched && !prixVar.valid
+            }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="prixVar.errors && prixVar.errors['required']"
+              >prix est obligatoire</span
+            >
+          </div>
+          <!-- Message d'erreur -->
+        </div>
+
+        <div class="form-submit-btn">
+          <input
+            type="submit"
+            [disabled]="!registreForm.valid"
+            value="ajouter"
+          />
+        </div>
+      </form>
+    </div>
+  </main>
+</div>

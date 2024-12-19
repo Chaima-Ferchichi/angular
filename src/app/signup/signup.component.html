@@ -1,0 +1,200 @@
+<div
+  class="bg-white dark:bg-gray-900 min-h-screen flex items-center justify-center"
+  style="margin: 5% 5%; height: 5%"
+>
+  <div
+    class="flex w-full max-w-4xl mx-auto lg:px-8 shadow-lg overflow-hidden rounded-lg"
+  >
+    <!-- Image côté gauche -->
+    <div
+      class="hidden lg:block lg:w-1/2 bg-cover"
+      style="
+        background-image: url('https://adventurefaktory.com/wp-content/uploads/2017/11/AdventureFaktory_Dubai_Vida-18.jpg');
+      "
+    ></div>
+
+    <!-- Formulaire côté droit -->
+    <div class="w-full p-6 lg:w-1/2 bg-white dark:bg-gray-800">
+      <h1 class="text-3xl font-bold text-gray-800 dark:text-white">
+        Créez votre compte gratuit
+      </h1>
+      <p class="mt-2 text-gray-600 dark:text-gray-400">
+        Configurez votre compte pour accéder à des fonctionnalités
+        personnalisées. Choisissez le type de compte pour commencer.
+      </p>
+
+      <!-- Formulaire d'inscription -->
+      <form
+        (ngSubmit)="onSubmit()"
+        #signupForm="ngForm"
+        class="grid grid-cols-1 gap-4 mt-8 sm:grid-cols-2"
+      >
+        <div>
+          <label class="block text-sm text-gray-600 dark:text-gray-200"
+            >Prénom</label
+          >
+          <input
+            type="text"
+            placeholder="Jean"
+            class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-50 border rounded-lg focus:border-blue-400 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 focus:ring focus:ring-blue-300"
+            name="firstName"
+            ngModel
+            required
+            #firstName="ngModel"
+            [ngClass]="{ 'is-invalid': firstName.touched && !firstName.valid }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="firstName.errors && firstName.errors['required']"
+              >prenom est obligatoire</span
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-600 dark:text-gray-200"
+            >Nom</label
+          >
+          <input
+            type="text"
+            placeholder="Dupont"
+            class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-50 border rounded-lg focus:border-blue-400 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 focus:ring focus:ring-blue-300"
+            name="lastName"
+            ngModel
+            required
+            #lastName="ngModel"
+            [ngClass]="{ 'is-invalid': lastName.touched && !lastName.valid }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="lastName.errors && lastName.errors['required']"
+              >nom est obligatoire</span
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-600 dark:text-gray-200"
+            >Numéro de téléphone</label
+          >
+          <input
+            type="text"
+            placeholder="XXX-XXX-XXXX"
+            class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-50 border rounded-lg focus:border-blue-400 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 focus:ring focus:ring-blue-300"
+            name="phoneNumber"
+            ngModel
+            required
+            #phoneNumber="ngModel"
+            [ngClass]="{
+              'is-invalid': phoneNumber.touched && !phoneNumber.valid
+            }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="phoneNumber.errors && phoneNumber.errors['required']"
+              >telephone est obligatoire</span
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-600 dark:text-gray-200"
+            >Adresse e-mail</label
+          >
+          <input
+            type="email"
+            placeholder="jeandupont@example.com"
+            class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-50 border rounded-lg focus:border-blue-400 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 focus:ring focus:ring-blue-300"
+            name="email"
+            ngModel
+            required
+            email
+            #email="ngModel"
+            [ngClass]="{ 'is-invalid': email.touched && !email.valid }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="email.errors && email.errors['required']"
+              >email est obligatoire</span
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-600 dark:text-gray-200"
+            >Mot de passe</label
+          >
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-50 border rounded-lg focus:border-blue-400 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 focus:ring focus:ring-blue-300"
+            name="password"
+            ngModel
+            required
+            #password="ngModel"
+            [ngClass]="{ 'is-invalid': password.touched && !password.valid }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="password.errors && password.errors['required']"
+              >password est obligatoire</span
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-600 dark:text-gray-200"
+            >Confirmer le mot de passe</label
+          >
+          <input
+            type="password"
+            placeholder="Confirmer le mot de passe"
+            class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-50 border rounded-lg focus:border-blue-400 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 focus:ring focus:ring-blue-300"
+            name="confirmPassword"
+            ngModel
+            required
+            #confirmPassword="ngModel"
+            [ngClass]="{
+              'is-invalid': confirmPassword.touched && !confirmPassword.valid
+            }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span
+              *ngIf="
+                confirmPassword.errors && confirmPassword.errors['required']
+              "
+              >Confirmer le mot est obligatoire</span
+            >
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full mt-4 px-6 py-3 text-sm font-medium tracking-wide text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 col-span-2"
+          [disabled]="!registreForm.valid"
+        >
+          S'inscrire
+        </button>
+      </form>
+
+      <!-- Alerte -->
+      <div
+        *ngIf="alertMessage"
+        class="mt-4 px-4 py-2 bg-blue-100 text-blue-600 border border-blue-300 rounded"
+      >
+        {{ alertMessage }}
+      </div>
+
+      <!-- Lien de connexion -->
+      <p class="mt-4 text-center text-gray-600 dark:text-gray-400">
+        Vous avez déjà un compte ?
+        <a
+          href="/login"
+          class="text-blue-600 hover:underline dark:text-blue-400"
+          >Connectez-vous</a
+        >
+      </p>
+    </div>
+  </div>
+</div>

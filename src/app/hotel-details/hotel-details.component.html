@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Détails de l'Hôtel</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div
+          class="text-2xl font-bold text-blue-600"
+          style="color: rgba(44, 42, 42, 0.993)"
+        >
+          Réservation Intelligente
+        </div>
+        <div class="flex items-center space-x-6">
+          <div class="flex items-center">
+            <img
+              src="https://cdn.pixabay.com/photo/2016/03/31/20/37/client-1295901_1280.png"
+              alt="client"
+              class="w-8 h-8 rounded-full border border-blue-500"
+            />
+            <span class="ml-2 text-gray-700">Connexion</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hotel Details Section -->
+    <section class="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h2 class="text-4xl font-bold text-blue-600">
+            {{ hebergement.nom }}
+          </h2>
+          <p class="text-gray-600 text-2xl mt-2">
+            {{ hebergement?.prix | currency : "TND " }}
+          </p>
+          <p class="mt-4 text-gray-700 text-lg">
+            {{ hebergement.description }}
+          </p>
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold">Équipements :</h3>
+            <ul class="list-disc list-inside mt-2 text-gray-700">
+              <li *ngIf="hebergement.wifi">🌐 Wi-Fi gratuit</li>
+              <li *ngIf="hebergement.serviceChambre">
+                🍽️ Service en chambre 24h/24
+              </li>
+              <li *ngIf="hebergement.piscine">🏊 Piscine intérieure</li>
+              <li *ngIf="hebergement.entertaiment">
+                💆‍♀️ Spa et centre de bien-être
+              </li>
+              <li *ngIf="hebergement.restauration">
+                🍴 Restaurant gastronomique
+              </li>
+              <li *ngIf="hebergement.parking">🅿️ Parking disponible</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Première image -->
+        <!-- Première image -->
+        <div>
+          <img
+            [src]="getFirstImage()"
+            alt="Première image de l'hébergement"
+            class="w-full h-full object-cover rounded-lg shadow-lg transition-transform transform hover:scale-105"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Additional Images Section -->
+    <!-- Galerie d'images -->
+    <section class="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
+      <h2 class="text-4xl font-bold text-blue-600">Galerie</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+        <img
+          *ngFor="let image of hebergementImages[id]?.slice(1)"
+          [src]="'data:image/jpeg;base64,' + image"
+          alt="Image de l'hébergement"
+          class="w-full h-full object-cover rounded-lg shadow-lg transition-transform transform hover:scale-105"
+        />
+      </div>
+    </section>
+
+    <!-- Galerie des chambres -->
+    <section class="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
+      <h2 class="text-4xl font-bold text-blue-600">Chambres Disponibles</h2>
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="text-red-500 mt-4">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Chambres Table -->
+      <div
+        class="records table-responsive"
+        *ngIf="chambresDisponibles?.length > 0; else noData"
+      >
+        <table width="100%">
+          <thead>
+            <tr>
+              <th><span class="las la-sort"></span>Type de Logement</th>
+              <th><span class="las la-sort"></span>Équipement</th>
+              <th><span class="las la-sort"></span>Nombre de Voyageurs</th>
+              <th><span class="las la-sort"></span>Prix</th>
+              <th><span class="las la-sort"></span>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of chambresDisponibles || []">
+              <tr>
+                <td>{{ item.bed }}</td>
+                <td>
+                  <div class="flex flex-col gap-2 items-start">
+                    <span *ngIf="item.climatisation" class="badge bg-success"
+                      >❄️ Climatisation</span
+                    >
+                    <span *ngIf="item.balcon" class="badge bg-info"
+                      >🌅 Balcon</span
+                    >
+                    <span *ngIf="item.television" class="badge bg-warning"
+                      >📺 Télévision</span
+                    >
+                    <span *ngIf="item.salleDeBains" class="badge bg-primary"
+                      >🛁 Salle de bains privative</span
+                    >
+                    <span *ngIf="item.wifi" class="badge bg-light text-black"
+                      >🌐 Wi-Fi</span
+                    >
+                    <span class="badge bg-light text-black"
+                      >🏠 Espace : {{ item.espace }}</span
+                    >
+                  </div>
+                </td>
+                <td>
+                  {{ item.nbPersonne }}
+                  <span class="las la-user-friends"></span>
+                </td>
+                <td>{{ item.prix | currency : "EUR" }}</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    [id]="'check_' + item.id"
+                    [name]="'check_' + item.id"
+                    (change)="onChambreSelect(item.id, $event)"
+                  />
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- No Data Template -->
+      <ng-template #noData>
+        <div class="text-gray-500 text-center mt-4">
+          Aucune chambre disponible pour cet hébergement.
+        </div>
+      </ng-template>
+
+      <!-- Reservation Form -->
+      <section class="mt-6">
+        <h3 class="text-2xl font-bold text-blue-600">Réservation</h3>
+        <form (ngSubmit)="submitReservation()">
+          <div class="mb-4">
+            <label for="date_arrivee" class="block">Date d'Arrivée</label>
+            <input
+              type="date"
+              id="date_arrivee"
+              [(ngModel)]="reservationData.date_arrivee"
+              name="date_arrivee"
+              required
+              class="w-full p-2 border border-gray-300 rounded-md"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="date_depart" class="block">Date de Départ</label>
+            <input
+              type="date"
+              id="date_depart"
+              [(ngModel)]="reservationData.date_depart"
+              name="date_depart"
+              required
+              class="w-full p-2 border border-gray-300 rounded-md"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="adultes" class="block">Nombre d'Adultes</label>
+            <input
+              type="number"
+              id="adultes"
+              [(ngModel)]="reservationData.adultes"
+              name="adultes"
+              min="1"
+              required
+              class="w-full p-2 border border-gray-300 rounded-md"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="enfants" class="block">Nombre d'Enfants</label>
+            <input
+              type="number"
+              id="enfants"
+              [(ngModel)]="reservationData.enfants"
+              name="enfants"
+              min="0"
+              required
+              class="w-full p-2 border border-gray-300 rounded-md"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Créer la Réservation
+          </button>
+        </form>
+      </section>
+    </section>
+
+    <!-- Return Button -->
+    <section class="max-w-7xl mx-auto p-6 mt-6 text-center">
+      <a
+        href="index.html"
+        class="inline-block bg-gray-800 text-white font-semibold px-4 py-2 rounded-md hover:bg-gray-700 transition"
+        >Retour à la page d'accueil</a
+      >
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-6">
+      <div class="max-w-7xl mx-auto text-center">
+        <p>&copy; 2024 Réservation Intelligente. Tous droits réservés.</p>
+      </div>
+    </footer>
+  </body>
+</html>

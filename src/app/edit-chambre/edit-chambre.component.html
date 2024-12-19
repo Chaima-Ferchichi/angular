@@ -1,0 +1,267 @@
+<input type="checkbox" id="menu-toggle" />
+<div class="sidebar">
+  <div class="side-header">
+    <h3>P<span>rop</span></h3>
+  </div>
+
+  <div class="side-content">
+    <div class="profile">
+      <div
+        class="profile-img bg-img"
+        style="
+          background-image: url(https://cdn-icons-png.flaticon.com/512/219/219986.png);
+        "
+      ></div>
+      <h5 style="color: white">Propreitaire</h5>
+    </div>
+
+    <div class="side-menu">
+      <ul>
+        <!--<li>
+                   <a href="" >
+                        <span class="las la-home"></span>
+                        <small>Dashboard</small>
+                    </a>
+                </li>-->
+
+        <li>
+          <a routerLink="/prop">
+            <span class="las la-tasks"></span>
+            <small>Demande d'adhésion </small>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/listeChambres">
+            <span class="las la-tasks"></span>
+            <small>Chambre</small>
+          </a>
+        </li>
+        <!--<li>
+                <a href="">
+                     <span class="las la-shopping-cart"></span>
+                     <small>Orders</small>
+                 </a>
+             </li>-->
+        <!--<li>
+          <a routerLink="/admin/Contrats">
+            <span class="las la-clipboard-list"></span>
+            <small>Contrats</small>
+          </a>
+        </li>
+          -->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <header>
+    <div class="header-content">
+      <label for="menu-toggle">
+        <span class="las la-bars"></span>
+      </label>
+
+      <div class="header-menu">
+        <div class="user">
+          <div
+            routerLink=""
+            class="bg-img"
+            style="background-image: url()"
+          ></div>
+
+          <span class="las la-power-off"></span>
+          <span>Logout</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>Dashboard</h1>
+      <small>Modifier chambre.</small>
+    </div>
+
+    <div class="container">
+      <h1 class="form-title">Modifier Chambre</h1>
+
+      <form
+        class="row g-3 custom-padding"
+        novalidate
+        (ngSubmit)="update(updateForm)"
+        #updateForm="ngForm"
+      >
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Type lit</label>
+          <input
+            id="bed"
+            class="form-control"
+            type="text"
+            name="bed"
+            placeholder="bed"
+            [(ngModel)]="chambre.bed"
+            required
+            #bedVar="ngModel"
+            [ngClass]="{ 'is-invalid': bedVar.touched && !bedVar.valid }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="bedVar.errors && bedVar.errors['required']"
+              >Type de lit obligatoire</span
+            >
+          </div>
+          <!-- Message d'erreur -->
+        </div>
+
+        <div class="col-md-6" style="padding-left: 5%">
+          <label for="inputCin" class="form-label">Nombre personnne</label>
+          <input
+            id="nbPersonne"
+            class="form-control"
+            type="number"
+            placeholder="nombre de presonne"
+            name="nbPersonne"
+            [(ngModel)]="chambre.nbPersonne"
+            required
+            #nbPersonneVar="ngModel"
+            [ngClass]="{
+              'is-invalid': nbPersonneVar.touched && !nbPersonneVar.valid
+            }"
+          />
+
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span
+              *ngIf="nbPersonneVar.errors && nbPersonneVar.errors['required']"
+              >nombre de personne est obligatoire</span
+            >
+          </div>
+          <!-- Message d'erreur -->
+        </div>
+
+        <!-- Section pour les Équipements :avec cases à cocher -->
+        <div class="col-md-6">
+          <label class="form-label">Équipements :</label>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="climatisation"
+              name="climatisation"
+              [(ngModel)]="chambre.climatisation"
+            />
+            <label class="form-check-label" for="climatisation"
+              >❄️ Climatisation</label
+            >
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="balcon"
+              name="balcon"
+              [(ngModel)]="chambre.balcon"
+            />
+            <label class="form-check-label" for="balcon">🌅 Balcon</label>
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="televesion"
+              name="televesion"
+              [(ngModel)]="chambre.televesion"
+            />
+            <label class="form-check-label" for="televesion">
+              📺 Télévision à écran plat
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="salledebains"
+              name="salledebains"
+              [(ngModel)]="chambre.salledebains"
+            />
+            <label class="form-check-label" for="salledebains">
+              🛁 Salle de bains privative
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="wifi"
+              name="wifi"
+              [(ngModel)]="chambre.wifi"
+            />
+            <label class="form-check-label" for="wifi">
+              🌐 Wi-Fi gratuit
+            </label>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Prix :</label>
+          <input
+            id="prix"
+            class="form-control"
+            type="number"
+            name="Prix"
+            placeholder="prix en euro"
+            [(ngModel)]="chambre.prix"
+            required
+            #prixVar="ngModel"
+            [ngClass]="{
+              'is-invalid': prixVar.touched && !prixVar.valid
+            }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="prixVar.errors && prixVar.errors['required']"
+              >prix est obligatoire</span
+            >
+          </div>
+          <!-- Message d'erreur -->
+        </div>
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Espace:</label>
+          <input
+            id="espace"
+            class="form-control"
+            type="number"
+            name="espace"
+            placeholder="espace en euro"
+            [(ngModel)]="chambre.espace"
+            required
+            #espaceVar="ngModel"
+            [ngClass]="{
+              'is-invalid': espaceVar.touched && !espaceVar.valid
+            }"
+          />
+          <i class="material-icons"></i>
+          <div class="invalid-feedback">
+            <span *ngIf="espaceVar.errors && espaceVar.errors['required']"
+              >espace est obligatoire</span
+            >
+          </div>
+          <!-- Message d'erreur -->
+        </div>
+
+        <div class="form-submit-btn">
+          <input
+            type="submit"
+            [disabled]="!updateForm.valid"
+            value="Modifier"
+          />
+        </div>
+      </form>
+    </div>
+  </main>
+</div>

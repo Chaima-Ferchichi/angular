@@ -9,13 +9,27 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { PropDashComponent } from './prop-dash/prop-dash.component';
+import { SignupComponent } from './signup/signup.component';
+import { HotelDetailsComponent } from './hotel-details/hotel-details.component';
+import { ChambreComponent } from './chambre/chambre.component';
+import { AjoutChambreComponent } from './ajout-chambre/ajout-chambre.component';
+import { EditChambreComponent } from './edit-chambre/edit-chambre.component';
+import { ListeReservationsComponent } from './liste-reservations/liste-reservations.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminDashComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    PropDashComponent,
+    SignupComponent,
+    HotelDetailsComponent,
+    ChambreComponent,
+    AjoutChambreComponent,
+    EditChambreComponent,
+    ListeReservationsComponent
   ],
   imports: [
     BrowserModule,
