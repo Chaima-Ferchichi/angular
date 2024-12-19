@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#6200EE</color>
+    <color name="secondary">#03DAC5</color>
+    <color name="background_light">#F2F2F2</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="shadow_color">#E0E0E0</color>
+    <color name="r">#FFFFFF</color>
+    <color name="my_red">#FF0000</color>
+    <color name="blue">#2196F3</color>
+    <color name="background">#FFFFFF</color>
+    <color name="light_gray">#ECEFF1</color>
+    <color name="dark_gray">#212121</color>
+    <color name="white">#FFFFFF</color>
+    <color name="primary_light">#48A999</color>
+    <color name="primary_dark">#004D40</color>
+<!--part2-->
+    <color name="my_light_primary">#FF6200EE</color>
+    <color name="my_light_primary_dark">#FF3700B3</color>
+    <color name="my_light_accent">#FF03DAC5</color>
+    <color name="my_light_text">#FF000000</color>
+    <color name="my_light_background">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="violet_classic">#4B0082</color>
+    <color name="gray">#D3D3D3</color>
+    <color name="colorPrimary">#FF6200EE</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorSecondary">#FF5722</color>
+    <color name="purple">#9868d3</color>
+    <color name="yellow_border">#FFD700</color>
+    <color name="blue_button">#007BFF</color>
+    <color name="violet">#6A1B9A</color>
+    <color name="textPrimary">#333333</color>
+    <color name="textSecondary">#757575</color>
+    <color name="backgroundWhite">#FFFFFF</color>
+    <color name="backgroundLightGray">#F5F5F5</color>
+    <color name="borderGray">#E0E0E0</color>
+    <color name="iconGray">#757575</color>
+    <color name="buttonViolet">#6A1B9A</color>
+    <color name="buttonTextWhite">#FFFFFF</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+
+    <color name="primaryText">#212121</color>
+    <color name="secondaryText">#757575</color>
+    <color name="dividerColor">#BDBDBD</color>
+    <color name="buttonBackgroundColor">#2196F3</color>
+    <color name="buttonTextColor">#FFFFFF</color>
+    <color name="buttonBackgroundColorPrimary">#3F51B5</color>
+
+
+
+
+
+
+
+
+</resources>
