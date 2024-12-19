@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_rechercher"
+        android:icon="@drawable/baseline_search_24"
+        android:title="Rechercher" />
+    <item
+        android:id="@+id/nav_favoris"
+        android:icon="@drawable/baseline_favorite_border_24"
+        android:title="Favoris" />
+    <item
+        android:id="@+id/nav_reservations"
+        android:icon="@drawable/baseline_shopping_bag_24"
+        android:title="Réservations" />
+    <item
+        android:id="@+id/nav_connecter"
+        android:icon="@drawable/baseline_person_outline_24"
+        android:title="Se connecter" />
+</menu>

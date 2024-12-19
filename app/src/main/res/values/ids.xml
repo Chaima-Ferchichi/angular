@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="search_location" type="id"/>
+    <item name="destination" type="id"/>
+    <item name="checkInDate" type="id"/>
+    <item name="checkOutDate" type="id"/>
+    <item name="guests" type="id"/>
+    <item name="searchButton" type="id"/>
+    <item name="btnBack" type="id"/>
+    <item name="google_sign_in_button" type="id"/>
+    <item name="facebook_sign_in_button" type="id"/>
+    <item name="email_sign_in_button" type="id"/>
+    <item name="confirmer_password" type="id"/>
+    <item name="sign_in_button" type="id"/>
+    <item name="password_edit_text" type="id"/>
+    <item name="email_edit_text" type="id"/>
+</resources>

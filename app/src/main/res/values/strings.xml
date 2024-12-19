@@ -1,0 +1,8 @@
+
+<resources>
+<string name="app_name">gouvernorats</string>
+<string name="error_nom">Erreur: Gouvernorat non trouvé</string>
+    <string name="reservation">Réservation</string>
+    <string name="default_web_client_id">default_web_client_id\n</string>
+    <string name="facebook_app_id">facebook_app_id\n</string>
+</resources>
